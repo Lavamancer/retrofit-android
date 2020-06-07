@@ -1,10 +1,6 @@
 package com.lavamancer.retrofit;
 
-import android.app.Activity;
 import android.os.AsyncTask;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.List;
 
 public class UserService {

@@ -5,18 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView usersTextView;
+    @BindView(R.id.usersTextView) TextView usersTextView;
+    @BindView(R.id.loginButton) Button loginButton;
+    @BindView(R.id.usersButton) Button usersButton;
     public String token;
 
 
@@ -24,25 +29,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         usersTextView = findViewById(R.id.usersTextView);
 
-
-        findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserService.postLogin(MainActivity.this);
             }
         });
 
-        findViewById(R.id.usersButton).setOnClickListener(new View.OnClickListener() {
+        usersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 UserService.getUsers(MainActivity.this);
             }
         });
-
-
     }
 
     public void updateUsers(List<User> users) {
